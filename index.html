@@ -1,94 +1,153 @@
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Rose Day 🌹</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Segoe UI', sans-serif;
     }
 
-    body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      text-align: center;
+    body{
+      min-height:100vh;
+      background: linear-gradient(135deg,#ff4e8d,#ff8fab);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      color:#fff;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
-      max-width: 400px;
-      width: 90%;
+    .container{
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
+      padding:35px 30px;
+      border-radius:20px;
+      text-align:center;
+      width:90%;
+      max-width:420px;
+      box-shadow:0 20px 45px rgba(0,0,0,0.3);
+      animation: pop 1s ease;
     }
 
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 10px;
+    h1{
+      font-size:2.3rem;
+      margin-bottom:10px;
     }
 
-    .rose {
-      font-size: 4rem;
-      margin: 20px 0;
+    .name{
+      font-size:1.4rem;
+      font-weight:600;
+      color:#ffe6ef;
+      margin-bottom:15px;
+    }
+
+    .rose{
+      font-size:4.5rem;
+      margin:20px 0;
       animation: float 2.5s ease-in-out infinite;
     }
 
-    p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
+    p{
+      font-size:1.05rem;
+      line-height:1.6;
+      margin-bottom:20px;
     }
 
-    button {
-      background: #fff;
-      color: #ff4f7a;
-      border: none;
-      padding: 12px 25px;
-      font-size: 1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.3s;
+    button{
+      padding:12px 26px;
+      border:none;
+      border-radius:30px;
+      background:#fff;
+      color:#ff4e8d;
+      font-size:1rem;
+      cursor:pointer;
+      transition:0.3s;
     }
 
-    button:hover {
-      background: #ff4f7a;
-      color: #fff;
-      transform: scale(1.05);
+    button:hover{
+      background:#ff4e8d;
+      color:#fff;
+      transform:scale(1.05);
     }
 
-    footer {
-      margin-top: 20px;
-      font-size: 0.9rem;
-      opacity: 0.9;
+    footer{
+      margin-top:18px;
+      font-size:0.9rem;
+      opacity:0.9;
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
+    /* Falling roses */
+    .petal{
+      position:absolute;
+      top:-50px;
+      font-size:1.8rem;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall{
+      to{
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+
+    @keyframes float{
+      0%,100%{ transform:translateY(0); }
+      50%{ transform:translateY(-12px); }
+    }
+
+    @keyframes pop{
+      from{ transform:scale(0.8); opacity:0; }
+      to{ transform:scale(1); opacity:1; }
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <h1>Happy Rose Day </h1>
+  <!-- Background Music -->
+  <audio autoplay loop>
+    <!-- Replace link with your favourite romantic song mp3 -->
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <h1>Happy Rose Day 🌹</h1>
+    <div class="name">For: <span id="to Todo">Your Name</span> 💖</div>
     <div class="rose">🌹</div>
     <p>
-      This rose is a symbol of love, care, and beautiful feelings.
-      May your life bloom with happiness and smiles.
+      A rose for you to express my feelings,
+      my care, and the smile you bring into my life.
+      May this Rose Day be as beautiful as you.
     </p>
-    <button onclick="alert(' Happy Rose Day! I love you my todoooooooo🌹🩵🧿 ')">click here</button>
-    <footer>Made with 🩵 for Rose Day</footer>
+    <button onclick="changeName()">Add Your Name</button>
+    <footer>Made with ❤️ just for you</footer>
   </div>
+
+  <script>
+    // Name input
+    function changeName(){
+      const name = prompt("Enter name 💕");
+      if(name){
+        document.getElementById("toName").innerText = name;
+      }
+    }
+
+    // Falling roses animation
+    for(let i=0;i<20;i++){
+      let petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.innerText = '🌹';
+      petal.style.left = Math.random()*100 + 'vw';
+      petal.style.animationDuration = (3 + Math.random()*5) + 's';
+      petal.style.opacity = Math.random();
+      document.body.appendChild(petal);
+    }
+  </script>
 
 </body>
 </html>
+
